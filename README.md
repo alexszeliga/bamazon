@@ -13,3 +13,11 @@ Once installed, navigate to the app path in the terminal any run the following c
 ```
 npm init
 ```
+
+## Using the app:
+
+Once all the dependencies install, send the following command to load the app.
+
+```
+node bamazonCustomer.js
+```

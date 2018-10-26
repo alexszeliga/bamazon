@@ -93,7 +93,7 @@ function transaction(userQuer) {
     function(err, res) {
       if (reqQty > res[0].stock_qty) {
         console.log("Insufficient quantity available. Please try again!");
-        // TODO return to prompt
+        gatherUserInput();
       } else {
         cartTotal = (reqQty * res[0].price).toFixed(2);
         console.log(`Excellent. Your total will be $${cartTotal}`);
@@ -109,8 +109,28 @@ function updateProdDB(item_id, currentStock, reqQty) {
     [{ stock_qty: currentStock - reqQty }, { item_id: item_id }],
     function(err, res) {
       //this is the update call back.
-      connection.end();
+      anotherOrder();
     }
   );
+}
+
+function anotherOrder() {
+  inquirer
+    .prompt([
+      {
+        name: "anotherOrder",
+        message: "Would you like to place another order?",
+        type: "list",
+        choices: ["Yes", "No"]
+      }
+    ])
+    .then(function(answer) {
+      if (answer.anotherOrder === "Yes") {
+        gatherUserInput();
+      } else {
+        console.log("Goodbye!");
+        connection.end();
+      }
+    });
 }
 getProductsFromDb();
