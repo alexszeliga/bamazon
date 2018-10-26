@@ -30,4 +30,4 @@ You will be presesnted with a list of available products and A
 
 ## See it in action!
 
-![bamazon working]("#")
+![bamazon working]("https://github.com/alexszeliga/bamazon/blob/master/app-test.gif")
